@@ -1,0 +1,3 @@
+{"@type":"vertex","@class":"User","@id":"test0","id":0}
+{"@type":"vertex","@class":"User","@id":"test1","id":1}
+{"@type":"edge","@class":"KNOWS","@from":"test0","@to":"test1"}

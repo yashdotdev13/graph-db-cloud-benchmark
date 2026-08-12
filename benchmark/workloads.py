@@ -8,6 +8,7 @@ POINT_LOOKUP = BenchmarkWorkload(
         MATCH (u:User {id: $id})
         RETURN u
     """,
+    parameters={"id": 0},
 )
 
 
@@ -18,6 +19,7 @@ RELATIONSHIP_LOOKUP = BenchmarkWorkload(
         MATCH (u:User {id: $id})-[:KNOWS]->(friend)
         RETURN friend
     """,
+    parameters={"id": 0},
 )
 
 
@@ -28,6 +30,7 @@ TRAVERSAL = BenchmarkWorkload(
         MATCH (u:User {id: $id})-[:KNOWS*1..3]->(friend)
         RETURN friend
     """,
+    parameters={"id": 0},
 )
 
 
