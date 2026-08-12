@@ -3,10 +3,24 @@ from pathlib import Path
 
 from benchmark.config import BenchmarkConfig
 from benchmark.database_registry import create_adapter
+from benchmark.dataset import get_dataset_counts
+from benchmark.metadata_serialization import save_run_metadata
 from benchmark.reporter import print_summary
+from benchmark.results import BenchmarkSummary
+from benchmark.run_directory import create_run_directory
+from benchmark.run_metadata import create_run_metadata
 from benchmark.runner import run_benchmark
 from benchmark.serialization import save_summary
 from benchmark.workload_registry import get_workloads
+
+
+SUPPORTED_DATABASES = [
+    "NEO4J",
+    "MEMGRAPH",
+    "FALKORDB",
+    "ARCADEDB",
+    "COGNODB",
+]
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -16,13 +30,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     parser.add_argument(
         "--database",
-        choices=[
-            "NEO4J",
-            "MEMGRAPH",
-            "FALKORDB",
-            "ARCADEDB",
-            "COGNODB",
-        ],
+        choices=SUPPORTED_DATABASES,
         help="Database to benchmark.",
     )
 
@@ -73,16 +81,47 @@ def main() -> None:
         ingestion_batch_size=1000,
         query_iterations=args.iterations,
         query_warmup_iterations=args.warmup,
+        query_seed=42,
     )
 
+    # Discover dataset size dynamically instead of
+    # hard-coding node and relationship counts.
+    node_count, relationship_count = get_dataset_counts(
+        config.nodes_path,
+        config.relationships_path,
+    )
+
+    # Create a unique directory for this benchmark run.
+    metadata = create_run_metadata(
+        node_count,
+        relationship_count,
+        config.ingestion_batch_size,
+        config.query_iterations,
+        config.query_warmup_iterations,
+        config.query_seed,
+    )
+
+    run_directory = create_run_directory(
+        Path("results"),
+        metadata.run_id,
+    )
+
+    metadata_path = save_run_metadata(
+        metadata,
+        run_directory,
+    )
+
+    print()
+    print("=" * 60)
+    print("Benchmark Run")
+    print("=" * 60)
+    print(f"Run ID:       {metadata.run_id}")
+    print(f"Git commit:   {metadata.git_commit}")
+    print(f"Run directory: {run_directory}")
+    print(f"Metadata:     {metadata_path}")
+
     if args.all:
-        databases = [
-            "NEO4J",
-            "MEMGRAPH",
-            "FALKORDB",
-            "ARCADEDB",
-            "COGNODB",
-        ]
+        databases = SUPPORTED_DATABASES
     else:
         databases = [args.database]
 
@@ -93,9 +132,10 @@ def main() -> None:
         print("#" * 60)
 
         workloads = get_workloads(database)
+
         adapter = create_adapter(database)
 
-        summary = run_benchmark(
+        summary: BenchmarkSummary = run_benchmark(
             adapter,
             config,
             workloads,
@@ -105,7 +145,7 @@ def main() -> None:
 
         output_path = save_summary(
             summary,
-            Path("results"),
+            run_directory,
         )
 
         print(f"Saved: {output_path}")

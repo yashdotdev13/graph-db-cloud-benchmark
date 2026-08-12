@@ -14,3 +14,5 @@ class BenchmarkConfig:
 
     query_iterations: int = 100
     query_warmup_iterations: int = 10
+
+    query_seed: int = 42

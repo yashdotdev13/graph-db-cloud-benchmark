@@ -23,14 +23,39 @@ RETURN friend
 )
 
 
-TRAVERSAL = BenchmarkWorkload(
-    name="traversal",
-    description="Traverse KNOWS relationships up to three hops.",
+TRAVERSAL_1_HOP = BenchmarkWorkload(
+    name="traversal_1_hop",
+    description="Traverse KNOWS relationships exactly one hop.",
     query="""
-MATCH (u:User {id: $id})-[:KNOWS*1..3]->(friend)
+MATCH (u:User {id: $id})-[:KNOWS]->(friend)
 RETURN friend
 """,
     parameters={"id": 0},
+    result_limit=1000,
+)
+
+
+TRAVERSAL_2_HOP = BenchmarkWorkload(
+    name="traversal_2_hop",
+    description="Traverse KNOWS relationships exactly two hops.",
+    query="""
+MATCH (u:User {id: $id})-[:KNOWS*2]->(friend)
+RETURN friend
+""",
+    parameters={"id": 0},
+    result_limit=1000,
+)
+
+
+TRAVERSAL_3_HOP = BenchmarkWorkload(
+    name="traversal_3_hop",
+    description="Traverse KNOWS relationships exactly three hops.",
+    query="""
+MATCH (u:User {id: $id})-[:KNOWS*3]->(friend)
+RETURN friend
+""",
+    parameters={"id": 0},
+    result_limit=1000,
 )
 
 
@@ -47,6 +72,8 @@ RETURN count(u)
 ALL_WORKLOADS = (
     POINT_LOOKUP,
     RELATIONSHIP_LOOKUP,
-    TRAVERSAL,
+    TRAVERSAL_1_HOP,
+    TRAVERSAL_2_HOP,
+    TRAVERSAL_3_HOP,
     AGGREGATION,
 )

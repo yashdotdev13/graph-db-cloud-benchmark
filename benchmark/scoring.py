@@ -11,15 +11,8 @@ DATABASES = (
     "cognodb",
 )
 
-WORKLOADS = (
-    "point_lookup",
-    "relationship_lookup",
-    "traversal",
-    "aggregation",
-)
 
-
-# We use P95 as the primary latency metric because
+# P95 is used as the primary latency metric because
 # it represents tail behavior better than the mean.
 QUERY_LATENCY_METRIC = "p95_ms"
 
@@ -56,9 +49,7 @@ def build_scores(
         "databases": databases,
         "methodology": {
             "query_latency_metric": QUERY_LATENCY_METRIC,
-            "normalization": (
-                "best_value_normalization"
-            ),
+            "normalization": "best_value_normalization",
         },
         "ingestion": {},
         "queries": {},
@@ -111,12 +102,15 @@ def build_scores(
     # ---------------------------------------------------------
     # Query workloads
     # ---------------------------------------------------------
+    #
+    # Workloads are taken directly from the comparison result.
+    # This keeps scoring aligned with the workload registry and
+    # avoids maintaining a second hard-coded workload list.
+    # ---------------------------------------------------------
 
-    for workload in WORKLOADS:
-
-        workload_results = comparison["queries"][
-            workload
-        ]
+    for workload, workload_results in comparison[
+        "queries"
+    ].items():
 
         latency_values = {
             database: workload_results[database][
@@ -146,17 +140,35 @@ def build_scores(
     # Equal weighting:
     #
     #   ingestion: 20%
-    #   point lookup: 20%
-    #   relationship lookup: 20%
-    #   traversal: 20%
-    #   aggregation: 20%
+    #   query performance: 80%
     #
-    # Each query workload contributes equally using:
+    # Query performance is distributed equally across all
+    # workloads present in the comparison.
+    #
+    # Each workload contributes:
     #
     #   50% P95 latency
     #   50% QPS
     #
+    # With the current benchmark this means:
+    #
+    #   point_lookup:       16%
+    #   relationship_lookup:16%
+    #   traversal_1_hop:    16%
+    #   traversal_2_hop:    16%
+    #   traversal_3_hop:    16%
+    #   aggregation:        16%
+    #
     # ---------------------------------------------------------
+
+    workloads = tuple(
+        comparison["queries"].keys()
+    )
+
+    if not workloads:
+        raise ValueError(
+            "Cannot calculate scores without query workloads."
+        )
 
     for database in databases:
 
@@ -168,7 +180,7 @@ def build_scores(
 
         query_scores = []
 
-        for workload in WORKLOADS:
+        for workload in workloads:
 
             latency_score = scores["queries"][
                 workload
@@ -246,7 +258,7 @@ def print_scores(
     print("Query workload scores")
     print("-" * 90)
 
-    for workload in WORKLOADS:
+    for workload in scores["queries"]:
 
         print()
         print(workload)

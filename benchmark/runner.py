@@ -6,10 +6,6 @@ from benchmark.workload import BenchmarkWorkload
 from databases.base import GraphDatabaseAdapter
 
 
-EXPECTED_NODES = 36_692
-EXPECTED_RELATIONSHIPS = 183_831
-
-
 def run_benchmark(
     adapter: GraphDatabaseAdapter,
     config: BenchmarkConfig,
@@ -25,15 +21,18 @@ def run_benchmark(
             batch_size=config.ingestion_batch_size,
         )
 
-        if ingestion.node_count != EXPECTED_NODES:
+        if ingestion.node_count != config.expected_nodes:
             raise RuntimeError(
-                f"Unexpected node count: {ingestion.node_count}"
+                f"Unexpected node count: "
+                f"{ingestion.node_count}; "
+                f"expected {config.expected_nodes}"
             )
 
-        if ingestion.relationship_count != EXPECTED_RELATIONSHIPS:
+        if ingestion.relationship_count != config.expected_relationships:
             raise RuntimeError(
                 f"Unexpected relationship count: "
-                f"{ingestion.relationship_count}"
+                f"{ingestion.relationship_count}; "
+                f"expected {config.expected_relationships}"
             )
 
         metadata = BenchmarkMetadata(
@@ -50,6 +49,8 @@ def run_benchmark(
                 workload,
                 iterations=config.query_iterations,
                 warmup_iterations=config.query_warmup_iterations,
+                node_count=ingestion.node_count,
+                query_seed=config.query_seed,
             )
             for workload in workloads
         )

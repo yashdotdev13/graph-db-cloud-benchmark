@@ -1,0 +1,14 @@
+{
+  "run_id": "20260812T213345Z",
+  "timestamp_utc": "2026-08-12T21:33:45.148525+00:00",
+  "git_commit": "13df07ff5c9c869a3198946c9537a0f225d3f2ec",
+  "python_version": "3.13.14 (tags/v3.13.14:fd17997, Jun 10 2026, 13:03:48) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
+  "node_count": 36692,
+  "relationship_count": 183831,
+  "ingestion_batch_size": 1000,
+  "query_iterations": 10,
+  "query_warmup_iterations": 2,
+  "query_seed": 42
+}

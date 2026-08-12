@@ -1,0 +1,102 @@
+{
+  "database": "memgraph",
+  "metadata": {
+    "node_count": 36692,
+    "relationship_count": 183831,
+    "ingestion_batch_size": 1000,
+    "query_iterations": 5,
+    "query_warmup_iterations": 2
+  },
+  "ingestion": {
+    "database": "memgraph",
+    "node_count": 36692,
+    "relationship_count": 183831,
+    "elapsed_seconds": 10.639155500102788
+  },
+  "queries": [
+    {
+      "database": "memgraph",
+      "workload": "point_lookup",
+      "iterations": 5,
+      "warmup_iterations": 2,
+      "total_seconds": 0.0026031999150291085,
+      "latencies_seconds": [
+        0.0006923000328242779,
+        0.0004958000499755144,
+        0.0005004000850021839,
+        0.0004509999416768551,
+        0.00045549997594207525
+      ]
+    },
+    {
+      "database": "memgraph",
+      "workload": "relationship_lookup",
+      "iterations": 5,
+      "warmup_iterations": 2,
+      "total_seconds": 0.0024642000207677484,
+      "latencies_seconds": [
+        0.0005080000264570117,
+        0.00045819999650120735,
+        0.0005946999881416559,
+        0.00042209995444864035,
+        0.00047470000572502613
+      ]
+    },
+    {
+      "database": "memgraph",
+      "workload": "traversal_1_hop",
+      "iterations": 5,
+      "warmup_iterations": 2,
+      "total_seconds": 0.0022815000265836716,
+      "latencies_seconds": [
+        0.0004885999951511621,
+        0.0004749000072479248,
+        0.00047339999582618475,
+        0.0004102999810129404,
+        0.0004208000609651208
+      ]
+    },
+    {
+      "database": "memgraph",
+      "workload": "traversal_2_hop",
+      "iterations": 5,
+      "warmup_iterations": 2,
+      "total_seconds": 0.002343200030736625,
+      "latencies_seconds": [
+        0.000557500054128468,
+        0.0004934000317007303,
+        0.00043990008998662233,
+        0.00042259995825588703,
+        0.0004237999673932791
+      ]
+    },
+    {
+      "database": "memgraph",
+      "workload": "traversal_3_hop",
+      "iterations": 5,
+      "warmup_iterations": 2,
+      "total_seconds": 0.002244099974632263,
+      "latencies_seconds": [
+        0.00048099993728101254,
+        0.0004518000641837716,
+        0.0004124999977648258,
+        0.00044219999108463526,
+        0.00045139994472265244
+      ]
+    },
+    {
+      "database": "memgraph",
+      "workload": "aggregation",
+      "iterations": 5,
+      "warmup_iterations": 2,
+      "total_seconds": 0.013185400050133467,
+      "latencies_seconds": [
+        0.0028286000015214086,
+        0.002821400063112378,
+        0.002604000037536025,
+        0.0024695000611245632,
+        0.002455600071698427
+      ]
+    }
+  ]
+}

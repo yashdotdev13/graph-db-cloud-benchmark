@@ -15,3 +15,4 @@ class BenchmarkWorkload:
     description: str
     query: str
     parameters: dict[str, Any] | None = None
+    result_limit: int | None = None
