@@ -1,0 +1,162 @@
+[
+  {
+    "database": "neo4j",
+    "workload": "point_lookup",
+    "p95_p50_ratio": 45.07481765698872,
+    "p99_p50_ratio": 47.62380226170633,
+    "max_p50_ratio": 48.35636923347645,
+    "coefficient_of_variation": 2.7563195977089157
+  },
+  {
+    "database": "neo4j",
+    "workload": "relationship_lookup",
+    "p95_p50_ratio": 49.72929845236426,
+    "p99_p50_ratio": 52.42028167092469,
+    "max_p50_ratio": 53.13687509068399,
+    "coefficient_of_variation": 2.9695026607634296
+  },
+  {
+    "database": "neo4j",
+    "workload": "traversal",
+    "p95_p50_ratio": 1.6737869262875469,
+    "p99_p50_ratio": 2.8246245718793603,
+    "max_p50_ratio": 3.2722125955552395,
+    "coefficient_of_variation": 0.34532955202232674
+  },
+  {
+    "database": "neo4j",
+    "workload": "aggregation",
+    "p95_p50_ratio": 1.5739335498642797,
+    "p99_p50_ratio": 56.16730222866983,
+    "max_p50_ratio": 66.4944631402552,
+    "coefficient_of_variation": 3.5079325883145405
+  },
+  {
+    "database": "memgraph",
+    "workload": "point_lookup",
+    "p95_p50_ratio": 1.4403535703075931,
+    "p99_p50_ratio": 1.6369531781339537,
+    "max_p50_ratio": 2.0437668484043434,
+    "coefficient_of_variation": 0.18267825971410262
+  },
+  {
+    "database": "memgraph",
+    "workload": "relationship_lookup",
+    "p95_p50_ratio": 1.478745686960211,
+    "p99_p50_ratio": 22.284203133681572,
+    "max_p50_ratio": 90.22357126173266,
+    "coefficient_of_variation": 4.268435031838323
+  },
+  {
+    "database": "memgraph",
+    "workload": "traversal",
+    "p95_p50_ratio": 1.1636239225794862,
+    "p99_p50_ratio": 1.383130160993413,
+    "max_p50_ratio": 1.6076168804664428,
+    "coefficient_of_variation": 0.08945337004993797
+  },
+  {
+    "database": "memgraph",
+    "workload": "aggregation",
+    "p95_p50_ratio": 19.899181571900343,
+    "p99_p50_ratio": 21.588608587596738,
+    "max_p50_ratio": 22.11943545719342,
+    "coefficient_of_variation": 2.1580424453795484
+  },
+  {
+    "database": "falkordb",
+    "workload": "point_lookup",
+    "p95_p50_ratio": 1.1628864660083598,
+    "p99_p50_ratio": 1.218373707858108,
+    "max_p50_ratio": 1.2667669135620672,
+    "coefficient_of_variation": 0.09014465539478463
+  },
+  {
+    "database": "falkordb",
+    "workload": "relationship_lookup",
+    "p95_p50_ratio": 1.2162001353358727,
+    "p99_p50_ratio": 1.462972703180884,
+    "max_p50_ratio": 1.6322104279206582,
+    "coefficient_of_variation": 0.11554358384857197
+  },
+  {
+    "database": "falkordb",
+    "workload": "traversal",
+    "p95_p50_ratio": 1.1191729182186514,
+    "p99_p50_ratio": 1.7872707322019272,
+    "max_p50_ratio": 1.8705244118981277,
+    "coefficient_of_variation": 0.1369807579180353
+  },
+  {
+    "database": "falkordb",
+    "workload": "aggregation",
+    "p95_p50_ratio": 1.1981382601464203,
+    "p99_p50_ratio": 1.2669315245743913,
+    "max_p50_ratio": 1.5606883841755268,
+    "coefficient_of_variation": 0.09793050275344194
+  },
+  {
+    "database": "arcadedb",
+    "workload": "point_lookup",
+    "p95_p50_ratio": 1.0616701865721818,
+    "p99_p50_ratio": 1.0809458758846522,
+    "max_p50_ratio": 1.4808686735854595,
+    "coefficient_of_variation": 0.08981275232317351
+  },
+  {
+    "database": "arcadedb",
+    "workload": "relationship_lookup",
+    "p95_p50_ratio": 1.0713917986566535,
+    "p99_p50_ratio": 1.0954103803574344,
+    "max_p50_ratio": 1.1143600946878838,
+    "coefficient_of_variation": 0.036948094232702226
+  },
+  {
+    "database": "arcadedb",
+    "workload": "traversal",
+    "p95_p50_ratio": 1.0639889140489383,
+    "p99_p50_ratio": 1.0765459246182851,
+    "max_p50_ratio": 1.0876605467550575,
+    "coefficient_of_variation": 0.032080081190754416
+  },
+  {
+    "database": "arcadedb",
+    "workload": "aggregation",
+    "p95_p50_ratio": 1.0902456103175073,
+    "p99_p50_ratio": 1.0941097876423662,
+    "max_p50_ratio": 1.1029527551042073,
+    "coefficient_of_variation": 0.03550553699961179
+  },
+  {
+    "database": "cognodb",
+    "workload": "point_lookup",
+    "p95_p50_ratio": 1.0752282936702817,
+    "p99_p50_ratio": 1.1207612554139263,
+    "max_p50_ratio": 1.1244738658611062,
+    "coefficient_of_variation": 0.028338249680093294
+  },
+  {
+    "database": "cognodb",
+    "workload": "relationship_lookup",
+    "p95_p50_ratio": 1.0767839945860052,
+    "p99_p50_ratio": 1.1807423571870859,
+    "max_p50_ratio": 1.1967584467030525,
+    "coefficient_of_variation": 0.03722152176710002
+  },
+  {
+    "database": "cognodb",
+    "workload": "traversal",
+    "p95_p50_ratio": 1.0711671658351616,
+    "p99_p50_ratio": 1.1995224447562733,
+    "max_p50_ratio": 1.2360313185029097,
+    "coefficient_of_variation": 0.040466531003131946
+  },
+  {
+    "database": "cognodb",
+    "workload": "aggregation",
+    "p95_p50_ratio": 1.0844020451090388,
+    "p99_p50_ratio": 1.116082804416171,
+    "max_p50_ratio": 1.3692180466843107,
+    "coefficient_of_variation": 0.04580920803721572
+  }
+]
