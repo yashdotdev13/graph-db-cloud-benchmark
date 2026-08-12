@@ -16,6 +16,9 @@ def main() -> None:
         adapter.connect()
         print("1. Health check: PASS")
 
+        # Ensure a clean database before the adapter test.
+        adapter.clear()
+
         result = adapter.execute(
             "RETURN 1 AS value"
         )

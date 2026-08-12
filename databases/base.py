@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from pathlib import Path
 from typing import Any
 
 
@@ -18,9 +19,13 @@ class GraphDatabaseAdapter(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def execute(self, query: str, parameters: dict[str, Any] | None = None) -> Any:
+    def execute(
+        self,
+        query: str,
+        parameters: dict[str, Any] | None = None,
+    ) -> Any:
         """
-        Execute a database query.
+        Execute a database-specific query.
 
         Parameters:
             query: Database-specific query string.
@@ -36,6 +41,44 @@ class GraphDatabaseAdapter(ABC):
     @abstractmethod
     def health_check(self) -> bool:
         """Return True if the database is reachable and healthy."""
+        raise NotImplementedError
+
+    @abstractmethod
+    def load_nodes(
+        self,
+        path: Path,
+        batch_size: int = 1000,
+    ) -> int:
+        """
+        Load nodes from the canonical nodes.csv dataset.
+
+        Returns:
+            Number of nodes loaded.
+        """
+        raise NotImplementedError
+
+    @abstractmethod
+    def load_relationships(
+        self,
+        path: Path,
+        batch_size: int = 1000,
+    ) -> int:
+        """
+        Load relationships from the canonical relationships.csv dataset.
+
+        Returns:
+            Number of relationships loaded.
+        """
+        raise NotImplementedError
+
+    @abstractmethod
+    def count_nodes(self) -> int:
+        """Return the number of benchmark nodes currently stored."""
+        raise NotImplementedError
+
+    @abstractmethod
+    def count_relationships(self) -> int:
+        """Return the number of benchmark relationships currently stored."""
         raise NotImplementedError
 
     @property
