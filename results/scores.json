@@ -1,0 +1,129 @@
+{
+  "databases": [
+    "neo4j",
+    "memgraph",
+    "falkordb",
+    "arcadedb",
+    "cognodb"
+  ],
+  "methodology": {
+    "query_latency_metric": "p95_ms",
+    "normalization": "best_value_normalization"
+  },
+  "ingestion": {
+    "elapsed_seconds": {
+      "neo4j": 0.03576608047448737,
+      "memgraph": 0.07562510322953189,
+      "falkordb": 1.0,
+      "arcadedb": 0.19347817408097306,
+      "cognodb": 0.01292091233270842
+    },
+    "nodes_per_second": {
+      "neo4j": 0.03576608047448738,
+      "memgraph": 0.07562510322953189,
+      "falkordb": 1.0,
+      "arcadedb": 0.19347817408097306,
+      "cognodb": 0.012920912332708421
+    },
+    "relationships_per_second": {
+      "neo4j": 0.03576608047448738,
+      "memgraph": 0.07562510322953189,
+      "falkordb": 1.0,
+      "arcadedb": 0.19347817408097306,
+      "cognodb": 0.012920912332708421
+    }
+  },
+  "queries": {
+    "point_lookup": {
+      "latency": {
+        "neo4j": 0.006290366741012924,
+        "memgraph": 0.6518240897793789,
+        "falkordb": 1.0,
+        "arcadedb": 0.006940729935249457,
+        "cognodb": 0.0019173187547872619
+      },
+      "qps": {
+        "neo4j": 0.05854575714253735,
+        "memgraph": 0.7931934850055223,
+        "falkordb": 1.0,
+        "arcadedb": 0.00641531817256288,
+        "cognodb": 0.0017705399754148255
+      }
+    },
+    "relationship_lookup": {
+      "latency": {
+        "neo4j": 0.007292172248742695,
+        "memgraph": 0.7562244996244263,
+        "falkordb": 1.0,
+        "arcadedb": 0.007903895288616243,
+        "cognodb": 0.0021972692779811025
+      },
+      "qps": {
+        "neo4j": 0.07519586483197951,
+        "memgraph": 0.4398347115192646,
+        "falkordb": 1.0,
+        "arcadedb": 0.007094499540933858,
+        "cognodb": 0.0019682286603086756
+      }
+    },
+    "traversal": {
+      "latency": {
+        "neo4j": 0.18935816457017446,
+        "memgraph": 0.3299304916282229,
+        "falkordb": 1.0,
+        "arcadedb": 0.14254170445456593,
+        "cognodb": 0.01837659593501545
+      },
+      "qps": {
+        "neo4j": 0.2655165469992137,
+        "memgraph": 0.34476296692649383,
+        "falkordb": 1.0,
+        "arcadedb": 0.13872250202574726,
+        "cognodb": 0.01789968874048578
+      }
+    },
+    "aggregation": {
+      "latency": {
+        "neo4j": 0.29315059165666024,
+        "memgraph": 0.009149189973573007,
+        "falkordb": 1.0,
+        "arcadedb": 0.00999048606201101,
+        "cognodb": 0.0019149785626404192
+      },
+      "qps": {
+        "neo4j": 0.14743239813516873,
+        "memgraph": 0.06964875779744628,
+        "falkordb": 1.0,
+        "arcadedb": 0.009111541712282891,
+        "cognodb": 0.0017390915128240845
+      }
+    }
+  },
+  "overall": {
+    "neo4j": {
+      "ingestion_score": 0.03576608047448737,
+      "query_score": 0.1303477327906862,
+      "overall_score": 0.11143140232744644
+    },
+    "memgraph": {
+      "ingestion_score": 0.07562510322953189,
+      "query_score": 0.424321024031791,
+      "overall_score": 0.3545818398713392
+    },
+    "falkordb": {
+      "ingestion_score": 1.0,
+      "query_score": 1.0,
+      "overall_score": 1.0
+    },
+    "arcadedb": {
+      "ingestion_score": 0.19347817408097306,
+      "query_score": 0.04109008464899619,
+      "overall_score": 0.07156770253539158
+    },
+    "cognodb": {
+      "ingestion_score": 0.01292091233270842,
+      "query_score": 0.0059729639274322,
+      "overall_score": 0.007362553608487445
+    }
+  }
+}

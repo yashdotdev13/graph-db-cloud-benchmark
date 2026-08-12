@@ -46,17 +46,40 @@ class FalkorDBAdapter(GraphDatabaseAdapter):
             self.client = None
 
     def execute(
-        self,
-        query: str,
-        parameters: dict[str, Any] | None = None,
+            self,
+            query: str,
+            parameters: dict[str, Any] | None = None,
     ) -> Any:
         if self.client is None:
             raise RuntimeError(
                 "FalkorDB adapter is not connected"
             )
 
-        # FalkorDB GRAPH.QUERY does not currently use the
-        # parameters argument in this adapter.
+        if parameters:
+            parameter_parts = []
+
+            for key, value in parameters.items():
+                if isinstance(value, str):
+                    escaped_value = value.replace("\\", "\\\\").replace("'", "\\'")
+                    parameter_parts.append(
+                        f"{key}='{escaped_value}'"
+                    )
+                elif value is None:
+                    parameter_parts.append(
+                        f"{key}=NULL"
+                    )
+                else:
+                    parameter_parts.append(
+                        f"{key}={value}"
+                    )
+
+            query = (
+                    "CYPHER "
+                    + " ".join(parameter_parts)
+                    + " "
+                    + query
+            )
+
         return self.client.execute_command(
             "GRAPH.QUERY",
             self.GRAPH_NAME,
