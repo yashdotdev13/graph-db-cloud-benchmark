@@ -1,0 +1,6 @@
+neo4j
+redis
+requests
+python-dotenv
+falkordb-bulk-loader
+matplotlib
