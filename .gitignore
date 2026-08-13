@@ -23,6 +23,8 @@ Thumbs.db
 results/raw/*
 results/processed/*
 results/charts/*
+results/runs/*
+
 
 # Raw public datasets
 data/raw/
