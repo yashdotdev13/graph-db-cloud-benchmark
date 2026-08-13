@@ -132,6 +132,13 @@ class ArcadeDBAdapter(GraphDatabaseAdapter):
         except Exception:
             return False
 
+    def prepare_benchmark(self) -> None:
+        self.execute(
+            """
+            CREATE INDEX ON User (id) UNIQUE_HASH
+            """
+        )
+
     def load_nodes(
         self,
         path: Path,

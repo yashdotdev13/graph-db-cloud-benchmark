@@ -77,6 +77,18 @@ class MemgraphAdapter(GraphDatabaseAdapter):
         except Exception:
             return False
 
+    def prepare_benchmark(self) -> None:
+        if self.driver is None:
+            raise RuntimeError(
+                "Memgraph adapter is not connected"
+            )
+
+        self.execute(
+            """
+            CREATE INDEX ON :User(id)
+            """
+        )
+
     def load_nodes(
         self,
         path: Path,

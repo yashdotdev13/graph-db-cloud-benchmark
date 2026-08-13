@@ -44,6 +44,16 @@ class GraphDatabaseAdapter(ABC):
         raise NotImplementedError
 
     @abstractmethod
+    def prepare_benchmark(self) -> None:
+        """
+        Prepare database-specific indexes and schema required
+        by the benchmark workloads.
+        """
+        raise NotImplementedError
+
+
+
+    @abstractmethod
     def load_nodes(
         self,
         path: Path,

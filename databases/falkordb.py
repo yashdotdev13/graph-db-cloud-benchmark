@@ -121,6 +121,19 @@ class FalkorDBAdapter(GraphDatabaseAdapter):
         except Exception:
             return False
 
+    def prepare_benchmark(self) -> None:
+        if self.client is None:
+            raise RuntimeError(
+                "FalkorDB adapter is not connected"
+            )
+
+        self.execute(
+            """
+            CREATE INDEX FOR (u:User)
+            ON (u.id)
+            """
+        )
+
     def load_nodes(
         self,
         path: Path,

@@ -96,6 +96,20 @@ class CognoDBAdapter(GraphDatabaseAdapter):
         except Exception:
             return False
 
+    def prepare_benchmark(self) -> None:
+        if self.driver is None:
+            raise RuntimeError(
+                "CognoDB adapter is not connected"
+            )
+
+        self.execute(
+            """
+            CREATE INDEX user_id_index IF NOT EXISTS
+            FOR (u:User)
+            ON (u.id)
+            """
+        )
+
     def load_nodes(
         self,
         path: Path,

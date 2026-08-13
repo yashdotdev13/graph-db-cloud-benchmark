@@ -34,6 +34,7 @@ def run_benchmark(
                 f"{ingestion.relationship_count}; "
                 f"expected {config.expected_relationships}"
             )
+        adapter.prepare_benchmark()
 
         metadata = BenchmarkMetadata(
             node_count=ingestion.node_count,

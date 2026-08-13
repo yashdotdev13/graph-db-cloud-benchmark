@@ -11,6 +11,17 @@ RETURN u
     parameters={"id": 0},
 )
 
+INDEXED_LOOKUP = BenchmarkWorkload(
+    name="indexed_lookup",
+    description="Lookup a user by the indexed id property.",
+    query="""
+MATCH (u:User)
+WHERE u.id = $id
+RETURN u
+""",
+    parameters={"id": 0},
+)
+
 
 RELATIONSHIP_LOOKUP = BenchmarkWorkload(
     name="relationship_lookup",
@@ -74,6 +85,7 @@ RETURN count(u)
 
 ALL_WORKLOADS = (
     POINT_LOOKUP,
+    INDEXED_LOOKUP,
     RELATIONSHIP_LOOKUP,
     TRAVERSAL_1_HOP,
     TRAVERSAL_2_HOP,
